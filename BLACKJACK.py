@@ -93,9 +93,15 @@ def pontos(dealer_mao, jogador_mao):
         print(jogador_mao, dealer_mao)
         print ("Você ganhou!")
         return True
-    
+    if jogador_mao[0]=='A'==jogador_mao[1]:
+        montante+=100
+        print('Você ganhou $100 por tirar um duplo As')       
+    if jogador_mao[0]==jogador_mao[1]==jogador_mao[2]==7:
+        montante=montante*3
+        print('Parabéns! você tirou um triplo 7 e triplicou o seu montante!')
+        
 def checa_blackjack(jogador_mao, montante, aposta):
-        if total(jogador_mao)==21:
+    if total(jogador_mao)==21:
         montante+=aposta*1.5
         print('Você tem ${0}' .format(montante))
     else:
@@ -111,11 +117,52 @@ def vinte_um(dealer_mao, jogador_mao):
         print ("Você perdeu! O dealer tirou 21")
         jogar_de_novo()
         
-    if jogador_mao[0]=='A'==jogador_mao[1]:
-        montante+=100
-        print('Você ganhou $100 por tirar um duplo As')
-        
-    if jogador_mao[0]==jogador_mao[1]==jogador_mao[2]==7:
-        montante=montante*3
-        print('Parabéns! você tirou um triplo 7 e triplicou o seu montante!')
+def jogo():
+    n=int(input('Com quantos baralhos vc quer jogar? '))
+    baralho = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4*n
+    escolha = 0
+    clear()
+    print ("VAMOS JOGAR BLACKJACK INSPER VERSION")
+    montante=500
+    dealer_mao = dar_as_cartas(baralho)
+    jogador_mao = dar_as_cartas(baralho)
+    jogando = True
+    while jogando:
+        print('Você tem ${0}' .format(montante))
+        aposta=int(input('Quanto você quer apostar? '))
+        aposta_valida = False
+        while not aposta_valida:
+            if montante < aposta:
+                print('Você não tem dinheiro o suficiente pra isso')
+                aposta=int(input('Quanto você quer apostar? '))
+            else:
+                aposta_valida = True
+        print ("O dealer saiu com " + str(dealer_mao[0]))
+        print ("Você começou com " + str(jogador_mao) + " com um total de " + str(total(jogador_mao)) + " pontos")
+        vinte_um(dealer_mao, jogador_mao)
+        escolha = input("O que você quer fazer? [H]it, [F]icar, or [S]air: ").lower()
+        clear()
+        if escolha == "h":
+            hit(jogador_mao)
+            while total(dealer_mao) < 18:
+                hit(dealer_mao)
+            venceu = pontos(dealer_mao, jogador_mao)
+            if venceu:
+                montante = checa_blackjack(jogador_mao, montante, aposta)
+            jogando, dealer_mao, jogador_mao, baralho = jogar_de_novo()
+        elif escolha == "f":
+            while total(dealer_mao) < 18:
+                hit(dealer_mao)
+            venceu = pontos(dealer_mao, jogador_mao)
+            if venceu:
+                montante = checa_blackjack(jogador_mao, montante, aposta)
+            jogando, dealer_mao, jogador_mao, baralho = jogar_de_novo()
+        elif escolha == "s":
+            print ("Até a próxima!")
+            jogando = False
+
+
+jogo()
+
+
 
