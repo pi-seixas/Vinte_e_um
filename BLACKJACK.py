@@ -48,3 +48,12 @@ def jogar_de_novo():
         print ("Até a próxima!")
         jogando = False
     return jogando, dealer_mao, jogador_mao, baralho
+
+def hit(mao):
+    carta = baralho.pop()
+    if carta == 11:carta = "J"
+    if carta == 12:carta = "Q"
+    if carta == 13:carta = "K"
+    if carta == 14:carta = "A"
+    mao.append(carta)
+    return mao
