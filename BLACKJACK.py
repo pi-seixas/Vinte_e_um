@@ -110,4 +110,12 @@ def vinte_um(dealer_mao, jogador_mao):
     elif total(dealer_mao) == 21:        
         print ("Você perdeu! O dealer tirou 21")
         jogar_de_novo()
+        
+    if jogador_mao[0]=='A'==jogador_mao[1]:
+        montante+=100
+        print('Você ganhou $100 por tirar um duplo As')
+        
+    if jogador_mao[0]==jogador_mao[1]==jogador_mao[2]==7:
+        montante=montante*3
+        print('Parabéns! você tirou um triplo 7 e triplicou o seu montante!')
 
