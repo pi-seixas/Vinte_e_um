@@ -66,4 +66,30 @@ def clear():
 def resultado(dealer_mao, jogador_mao):
     clear()
     print ("O dealer tem " + str(dealer_mao) + " com um total de " + str(total(dealer_mao)) + " pontos")
-    print ("Você tem " + str(jogador_mao) + " com um total de " + str(total(jogador_mao)) + " pont
+    print ("Você tem " + str(jogador_mao) + " com um total de " + str(total(jogador_mao)) + " pontos " )
+    
+def pontos(dealer_mao, jogador_mao):
+    if total(jogador_mao) == 21:
+        print(jogador_mao, dealer_mao)
+        print ("Parabéns! você tirou 21!")
+        return True
+    elif total(dealer_mao) == 21:
+        print(jogador_mao, dealer_mao)        
+        print ("Você perdeu! O dealer tirou 21")
+        return False
+    elif total(jogador_mao) > 21:
+        print(jogador_mao, dealer_mao)
+        print ("Estourou! Você perdeu!")
+        return False
+    elif total(dealer_mao) > 21:
+        print(jogador_mao, dealer_mao)               
+        print ("O Dealer estourou! Você ganhou!")
+        return True
+    elif total(jogador_mao) < total(dealer_mao):
+        print(jogador_mao, dealer_mao)
+        print ("Você perdeu!")
+        return False
+    elif total(jogador_mao) > total(dealer_mao):               
+        print(jogador_mao, dealer_mao)
+        print ("Você ganhou!")
+        return True
