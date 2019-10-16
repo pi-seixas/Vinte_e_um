@@ -93,3 +93,21 @@ def pontos(dealer_mao, jogador_mao):
         print(jogador_mao, dealer_mao)
         print ("Você ganhou!")
         return True
+    
+def checa_blackjack(jogador_mao, montante, aposta):
+        if total(jogador_mao)==21:
+        montante+=aposta*1.5
+        print('Você tem ${0}' .format(montante))
+    else:
+        montante+=aposta
+        print('Você tem ${0}' .format(montante))
+    return montante
+
+def vinte_um(dealer_mao, jogador_mao):
+    if total(jogador_mao) == 21:
+        print ("Parabéns! você tirou 21!")
+        jogar_de_novo()
+    elif total(dealer_mao) == 21:        
+        print ("Você perdeu! O dealer tirou 21")
+        jogar_de_novo()
+
