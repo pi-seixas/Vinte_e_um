@@ -57,3 +57,13 @@ def hit(mao):
     if carta == 14:carta = "A"
     mao.append(carta)
     return mao
+def clear():
+    if os.name == 'nt':
+        os.system('CLS')
+    if os.name == 'posix':
+        os.system('clear')
+
+def resultado(dealer_mao, jogador_mao):
+    clear()
+    print ("O dealer tem " + str(dealer_mao) + " com um total de " + str(total(dealer_mao)) + " pontos")
+    print ("Você tem " + str(jogador_mao) + " com um total de " + str(total(jogador_mao)) + " pont
