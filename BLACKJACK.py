@@ -21,3 +21,18 @@ def dar_as_cartas(baralho):
         if carta == 14:carta = "A"
         mao.append(carta)
     return mao
+
+def total(mao):
+    total = 0
+    for carta in mao:
+        if carta == "J" or carta == "Q" or carta == "K":
+            total+= 10
+        elif carta == "A":
+            if mao[0] >= 11: 
+                total += 1 
+            else:
+                total+= 11
+        else:
+            total+= carta
+            
+    return total
