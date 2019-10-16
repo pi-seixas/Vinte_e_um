@@ -36,3 +36,15 @@ def total(mao):
             total+= carta
             
     return total
+
+def jogar_de_novo():
+    de_novo = input("você quer jogar de novo? (S/N) : ")
+    if de_novo == "s":
+        dealer_mao = []
+        jogador_mao = []
+        baralho = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
+        jogando = True
+    else:
+        print ("Até a próxima!")
+        jogando = False
+    return jogando, dealer_mao, jogador_mao, baralho
